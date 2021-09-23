@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">TranslationApp</string>
     <string name="click">Click</string>
+    <string-array name = "Input_Language">
+        <item>English</item>
+        <item>廣東話</item>
+        <item>普通话</item>
+        <item>Korean</item>
+    </string-array>
+
+    <string-array name = "Output_Language">
+        <item>English</item>
+        <item>廣東話</item>
+        <item>普通话</item>
+        <item>Korean</item>
+    </string-array>
+
 </resources>
