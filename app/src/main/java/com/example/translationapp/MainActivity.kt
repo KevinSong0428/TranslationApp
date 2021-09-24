@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             startInput()
         }*/
 
+        //input spinner selection
         inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 // An item was selected. You can retrieve the selected item using parent.getItemAtPosition(pos)
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //output spinner selection
         outSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 when(parent.getItemAtPosition(pos)) {
