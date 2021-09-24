@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
+                Toast.makeText(Activity(),"No input language selected.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
+                Toast.makeText(Activity(),"No output language selected.", Toast.LENGTH_SHORT).show()
             }
         }
 
