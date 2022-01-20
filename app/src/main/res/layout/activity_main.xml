@@ -12,16 +12,40 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_marginTop="75dp"
-        android:background="#A9EAF3"
+        android:layout_marginBottom="50dp"
         android:paddingTop="250dp" />
+
+    <TextView
+        android:id="@+id/inText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/inputLang"
+        android:hint="Input Text"
+        android:textSize="30sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@id/inText"
+        android:background="@android:color/black"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/inText"
+        android:background="@android:color/black"
+        />
 
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@id/inputLang"
-        android:layout_margin="50dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/inText"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/click"
         />
 
@@ -30,8 +54,34 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/btn"
+        android:layout_marginBottom="50dp"
         android:background="#A895CC"
         />
+
+    <TextView
+        android:id="@+id/outText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/outputLang"
+        android:textSize="30sp"
+        android:hint="Output Text"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@id/outText"
+        android:background="@android:color/black"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/outText"
+        android:background="@android:color/black"
+        />
+
+
 
 
 
