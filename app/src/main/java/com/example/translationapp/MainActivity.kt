@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btn = findViewById<Button>(R.id.btn)
+        val inText = findViewById<TextView>(R.id.inText)
+        val outText = findViewById<TextView>(R.id.outText)
 
         // INPUT SPINNER SET UP
         val inSpinner = findViewById<Spinner>(R.id.inputLang)
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         inSpinner.setSelection(0)
         // set adapter to inputSpinner
         inSpinner.adapter = inputAdapter
+
 
         // input spinner selection
         inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -61,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         // OUTPUT SPINNER SET UP
         val outSpinner = findViewById<Spinner>(R.id.outputLang)
         val outputLanguages = resources.getStringArray(R.array.languages)
@@ -69,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         outSpinner.setSelection(0)
         outSpinner.adapter = outputAdapter
 
-        /*
         // output spinner selection
         outSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
@@ -88,8 +91,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(Activity(),"No output language selected.", Toast.LENGTH_SHORT).show()
             }
         }
-
-         */
 
         btn.setOnClickListener {
             startInput()

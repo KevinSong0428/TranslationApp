@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TranslationApp</string>
     <string name="click">Click</string>
+    <string name="output_text">Output Text</string>
+    <string name="input_text">Input Text</string>
     <string-array name = "languages">
         <item>English</item>
         <item>廣東話</item>

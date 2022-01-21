@@ -13,14 +13,17 @@
         android:layout_height="60dp"
         android:layout_marginTop="75dp"
         android:layout_marginBottom="50dp"
-        android:paddingTop="250dp" />
+        android:paddingTop="250dp"
+        android:padding="8dp"
+        android:background="@color/teal_200"
+        />
 
     <TextView
         android:id="@+id/inText"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/inputLang"
-        android:hint="Input Text"
+        android:hint="@string/input_text"
         android:textSize="30sp" />
 
     <View
@@ -56,6 +59,7 @@
         android:layout_below="@+id/btn"
         android:layout_marginBottom="50dp"
         android:background="#A895CC"
+        android:padding="8dp"
         />
 
     <TextView
@@ -64,7 +68,7 @@
         android:layout_height="100dp"
         android:layout_below="@+id/outputLang"
         android:textSize="30sp"
-        android:hint="Output Text"
+        android:hint="@string/output_text"
         />
 
     <View
