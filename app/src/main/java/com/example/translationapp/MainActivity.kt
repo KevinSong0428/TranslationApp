@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         // set adapter to inputSpinner
         inSpinner.adapter = inputAdapter
 
+        
 
         // input spinner selection
         inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
