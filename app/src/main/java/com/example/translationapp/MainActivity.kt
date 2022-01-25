@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                 }
                  */
 
-
                 // print selected language
                 Toast.makeText(this@MainActivity,"Input language selected: " + inputLanguages[pos] + "\n which is: " + value, Toast.LENGTH_SHORT).show()
             }
@@ -81,16 +80,19 @@ class MainActivity : AppCompatActivity() {
         outSpinner.setSelection(0)
         outSpinner.adapter = outputAdapter
 
+        /*
         // output spinner selection
         outSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-
+                /*
                 when(outSpinner.getItemAtPosition(pos)) {
                     "English" -> outputLanguage = "en_US"
                     "廣東話" -> outputLanguage = "zh-HK"
                     "普通话" -> outputLanguage = "zh-Hans"
                     "Korean" -> outputLanguage = "Kor"
                 }
+
+                 */
                 // print selected language
                 Toast.makeText(Activity(),"Output language selected: " + outputLanguages[pos], Toast.LENGTH_SHORT).show()
             }
@@ -99,6 +101,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(Activity(),"No output language selected.", Toast.LENGTH_SHORT).show()
             }
         }
+
+         */
+
 
         btn.setOnClickListener {
             startInput()
