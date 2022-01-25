@@ -48,16 +48,23 @@ class MainActivity : AppCompatActivity() {
         inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 // An item was selected. You can retrieve the selected item using parent.getItemAtPosition(pos)
-
+                var value = inSpinner.getItemAtPosition(pos)
+                if (value == "English") inputLanguage = "en_US"
+                if (value == "廣東話") inputLanguage = "zh-HK"
+                if (value == "普通话") inputLanguage = "zh-Hans"
+                if (value == "Korean") inputLanguage = "Kor"
+                /*
                 when(inSpinner.getItemAtPosition(pos)) {
                     "English" -> inputLanguage = "en_US"
                     "廣東話" -> inputLanguage = "zh-HK"
                     "普通话" -> inputLanguage = "zh-Hans"
                     "Korean" -> inputLanguage = "Kor"
                 }
+                 */
+
 
                 // print selected language
-                Toast.makeText(this@MainActivity,"Input language selected: " + inputLanguages[pos], Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity,"Input language selected: " + inputLanguages[pos] + "\n which is: " + value, Toast.LENGTH_SHORT).show()
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
