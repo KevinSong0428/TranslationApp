@@ -11,6 +11,12 @@ import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import java.lang.Exception
+import android.widget.ArrayAdapter
+
+import android.widget.Spinner
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val inText = findViewById<TextView>(R.id.inText)
         val outText = findViewById<TextView>(R.id.outText)
 
+        /*
         // INPUT SPINNER SET UP
         val inSpinner = findViewById<Spinner>(R.id.inputLang)
         // access to items of the list (in this case, languages)
@@ -42,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         // set adapter to inputSpinner
         inSpinner.adapter = inputAdapter
 
-        
 
         // input spinner selection
         inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -80,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         outSpinner.setSelection(0)
         outSpinner.adapter = outputAdapter
 
-        /*
         // output spinner selection
         outSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
@@ -94,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
                  */
                 // print selected language
-                Toast.makeText(Activity(),"Output language selected: " + outputLanguages[pos], Toast.LENGTH_SHORT).show()
+                //Toast.makeText(Activity(),"Output language selected: " + outputLanguages[pos], Toast.LENGTH_SHORT).show()
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
@@ -104,6 +109,58 @@ class MainActivity : AppCompatActivity() {
 
          */
 
+        val inputAdapter: ArrayAdapter<CharSequence>
+        val outputAdapter: ArrayAdapter<CharSequence>
+
+        val inputLanguages = resources.getStringArray(R.array.languages)
+        val outputLanguages = resources.getStringArray(R.array.languages)
+
+        val inSpinner = findViewById<View>(R.id.inputLang) as Spinner
+        val outSpinner = findViewById<View>(R.id.outputLang) as Spinner
+
+        inputAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, inputLanguages)
+        inputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        inSpinner.adapter = inputAdapter
+
+        outputAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, outputLanguages)
+        outputAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        outSpinner.adapter = outputAdapter
+
+
+        // input spinner selection
+        inSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                println("HELLO: " + inSpinner.selectedItem.toString())
+                when(inSpinner.getItemAtPosition(pos)) {
+                    "English" -> inputLanguage = "en_US"
+                    "廣東話" -> inputLanguage = "zh-HK"
+                    "普通话" -> inputLanguage = "zh-Hans"
+                    "Korean" -> inputLanguage = "Kor"
+                }
+                println("Input language: " + inputLanguage)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                Toast.makeText(this@MainActivity, "No language selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // output spinner selection
+        outSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                println("HELLO: " + outSpinner.selectedItem.toString())
+                when(outSpinner.getItemAtPosition(pos)) {
+                    "English" -> outputLanguage = "en_US"
+                    "廣東話" -> outputLanguage = "zh-HK"
+                    "普通话" -> outputLanguage = "zh-Hans"
+                    "Korean" -> outputLanguage = "Kor"
+                }
+                println("Output language: " + outputLanguage)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Another interface callback
+                Toast.makeText(Activity(),"No output language selected.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         btn.setOnClickListener {
             startInput()
