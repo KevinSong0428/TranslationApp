@@ -11,7 +11,7 @@
         android:id="@+id/inputLang"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:paddingTop="250dp"
         android:padding="8dp"
@@ -24,7 +24,9 @@
         android:layout_height="100dp"
         android:layout_below="@id/inputLang"
         android:hint="@string/input_text"
-        android:textSize="30sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
 
     <View
         android:layout_width="match_parent"
@@ -49,7 +51,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
-        android:text="@string/click"
+        android:text="@string/Translate"
         />
 
     <Spinner
@@ -67,8 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/outputLang"
-        android:textSize="30sp"
         android:hint="@string/output_text"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         />
 
     <View

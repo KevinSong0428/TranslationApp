@@ -14,6 +14,11 @@ import java.lang.Exception
 import android.widget.ArrayAdapter
 
 import android.widget.Spinner
+import android.content.BroadcastReceiver
+import android.content.Context
+import org.w3c.dom.Text
+
+//import com.example.translationapp.MainActivity.LanguageDetailsChecker
 
 
 
@@ -26,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         private val REQUEST_CODE_PERMISSIONS = 100
         private var inputLanguage = "en_US"
         private var outputLanguage = "en_US"
+        private var inputText = ""
+        private var outputText = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btn = findViewById<Button>(R.id.btn)
-        val inText = findViewById<TextView>(R.id.inText)
         val outText = findViewById<TextView>(R.id.outText)
 
         /*
@@ -135,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     "English" -> inputLanguage = "en_US"
                     "廣東話" -> inputLanguage = "zh-HK"
                     "普通话" -> inputLanguage = "zh-Hans"
-                    "Korean" -> inputLanguage = "Kor"
+                    "한글" -> inputLanguage = "Kor"
                 }
                 println("Input language: " + inputLanguage)
             }
@@ -152,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     "English" -> outputLanguage = "en_US"
                     "廣東話" -> outputLanguage = "zh-HK"
                     "普通话" -> outputLanguage = "zh-Hans"
-                    "Korean" -> outputLanguage = "Kor"
+                    "한글" -> outputLanguage = "Kor"
                 }
                 println("Output language: " + outputLanguage)
             }
@@ -163,16 +169,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn.setOnClickListener {
-            startInput()
+            getSpeechInput()
         }
 
     }
 
+    /*
+    class LanguageDetailsChecker : BroadcastReceiver() {
+        private var supportedLanguages: List<String>? = null
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            val results = getResultExtras(true)
+            supportedLanguages = results.getStringArrayList(RecognizerIntent.EXTRA_SUPPORTED_LANGUAGES)
+            if (supportedLanguages == null) {
+                println("No voice data found.")
+            }
+            else{
+                for (i in supportedLanguages!!)
+                {
+                    println(i)
+                }
+            }
+        }
+    }
+     */
 
-    private fun startInput()
+    private fun getSpeechInput()
     {
-        val int = Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS)
-        print(int)
+        /*
+        val detailsIntent = Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS)
+        val hel = sendOrderedBroadcast(detailsIntent, null, LanguageDetailsChecker(), null, RESULT_OK, null, null)
+         */
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, inputLanguage)
@@ -188,30 +214,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        val inText = findViewById<TextView>(R.id.inText)
         when(requestCode){
             REQUEST_CODE_PERMISSIONS -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     // get text from result
                     val text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-
-                    // set the text to textView
-                    print(text)
-
+                    inputText = text?.get(0).toString()
+                    inText.text = inputText
                 }
             }
         }
     }
 
+    private fun translate(): String {
+        // Translate ONLY if necessary aka when languages are different
+        // get input text from companion object, inputText
+        if (inputLanguage == outputLanguage) {
+            return inputText
+        }
+        return ""
+    }
+
     private fun startOutput()
     {
-        // call translate, get string back and return back speech
-
+        // call translate, get string back
+        // RETURN BACK IN SPEECH
+        translate()
     }
-
-    private fun translate()
-    {
-        // Translate ONLY if necessary aka when languages are different
-
-    }
-
 }
