@@ -16,6 +16,9 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.content.BroadcastReceiver
 import android.content.Context
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.TranslatorOptions
 import org.w3c.dom.Text
 
 //import com.example.translationapp.MainActivity.LanguageDetailsChecker
@@ -198,12 +201,12 @@ class MainActivity : AppCompatActivity() {
         /*
         val detailsIntent = Intent(RecognizerIntent.ACTION_GET_LANGUAGE_DETAILS)
         val hel = sendOrderedBroadcast(detailsIntent, null, LanguageDetailsChecker(), null, RESULT_OK, null, null)
-         */
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, inputLanguage)
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hi, speak something")
+        */
         try {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, inputLanguage)
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hi, speak something")
             // if there is no error, show dialog
             startActivityForResult(intent, REQUEST_CODE_PERMISSIONS)
         } catch (e: Exception){
@@ -221,6 +224,7 @@ class MainActivity : AppCompatActivity() {
                     // get text from result
                     val text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     inputText = text?.get(0).toString()
+                    // updating textview
                     inText.text = inputText
                 }
             }
@@ -232,6 +236,16 @@ class MainActivity : AppCompatActivity() {
         // get input text from companion object, inputText
         if (inputLanguage == outputLanguage) {
             return inputText
+        }
+        else {
+            // Create an input-output translator:
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(TranslateLanguage.outputLanguage)
+                .build()
+            val englishGermanTranslator = Translation.getClient(options)
+
+
         }
         return ""
     }
